@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Function.prototype.constructor = function(arg){
+		// 	var
+		// 		oNew = Object.create(this.prototype);
+		// 	// var oNew = {};
+		// 	this.apply(oNew , arg);
+		// 	return oNew;
+		// }
+		Function.prototype.constructor = function(arg){
+			// var fConstruct = this , oNew={};
+			// (function(){
+			// 	fConstruct.apply(oNew,arg);
+			// })()
+			// oNew.prototype = fConstruct.prototype;
+			// return oNew;	
+			var fConstructor = this , fNewConstructor = function(){
+				fConstructor.apply(this , arg);
+			};
+			console.log(fConstructor);
+			console.log(fConstructor.prototype);
+			console.log(fNewConstructor.prototype);
+			fNewConstructor.prototype = fConstructor.prototype;//为什么加上该语句，新创建的对象的constructor属性会指向myConstructor呢
+			return new fNewConstructor();
+		}
+
+		function myConstructor() {
+			for(var i=0; i<arguments.length; i++){
+				this['property'+i] = arguments[i];
+			}			
+		}
+
+		var obj = myConstructor.constructor(['lala','12','chunk']);
+		console.log(obj);
+		console.log(obj.constructor);
+		console.log(obj instanceof myConstructor);
+	</script>	
+</body>
+</html>
