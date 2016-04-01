@@ -12,6 +12,7 @@ console.log(slice({'0':'la','1':'lala2','2':'lala3',length:3}));`
 ##bindPolyfill.html
 ###问题
 1.`this instanceof fNOP && oThis ? this : oThis`的作用
+
 2.`fNOP.prototype = this.prototype;fBound.prototype = new fNOP();`的作用
 
 
