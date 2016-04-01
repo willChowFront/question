@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var
+			unboundSlice = Array.prototype.slice,
+			slice = Function.prototype.call.bind(unboundSlice);
+			//未理解代码，上面代码是怎么运行的？
+		console.log(slice({'0':'la','1':'lala2','2':'lala3',length:3}));
+	</script>	
+</body>
+</html>
